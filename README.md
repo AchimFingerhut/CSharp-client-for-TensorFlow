@@ -2,14 +2,16 @@
 Access a TensorFlow service from a c# client using the gRPC protocol
 
 # Overview
-Using a trained TensorFlow network in in a python or java environment or even in an android app is well documented and there are lots of examples which will pave you the way.
+Using a trained TensorFlow network in in a python or java environment or even building an android app is well documented and there are lots of examples which will pave you the way.
 
 But poor programmer when it comes to access a TensorFlow server from a c# application.
 
-One core task herby is to build c# classes based on the “protobuf” templates to communicate to the server on the gPRC protocol.
+One core task herby is to build c# classes based on the “protobuf” templates to communicate with the TensorFlow service based on the gRPC protocol.
 
-What we finally want to accomplish is to provide classes in c# so our code may look like
+What we finally want to accomplish is to provide c# classes, which we can use in our c# client to communicate with the service.
+This code may look like this:
 
+```<language>
 private void button_Click(object _sender, RoutedEventArgs _e)
 {
 Channel channel = new Channel("127.0.0.1:50051",ChannelCredentials.Insecure);
@@ -22,12 +24,13 @@ request.Inputs["images"] = null;
 
 PredictResponse response = client.Predict(request);
 }
+```
+------------
 
 # Collecting the tools and protobuf templates
-The communication between a TensorFlow service and the client is based on the protocol gRPC.
 
 To make TensorFlow clients more general, the needed classes are defined in so called protobuf files.
-These are templates on which code for languages like java, python, c, c# etc. can be generated.
+These are templates based on which code for languages like java, python, c, c# etc. can be generated.
 The tool to generate the code classes is the protobuf compiler “protoc.exe”.
 
 The required protobuf templates can be categorized in
